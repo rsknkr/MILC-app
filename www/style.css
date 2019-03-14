@@ -1,0 +1,44 @@
+/* navbar color */
+.navbar-static-top {
+    background-color: #163E49;
+    border-color: #163E49;
+}
+
+/*navbar minimum height*/
+.navbar {
+	min-height: 62px;
+	}
+
+/*active button color */
+.active a {
+  background-color: #CFDD50 !important;
+}	
+	
+/*highlight color of the element on mouse hover*/
+a:hover {
+	  background-color: #CFDD50 !important;
+
+}
+
+/*radio buttons text size*/
+.radio{
+font-size:14pt;
+}	
+
+/*text input fields highlight*/
+.form-control.shiny-bound-input:focus { 
+    outline: none;
+    border-color: #AFBD25;
+    box-shadow: 0 0 5px #CFDD50;
+}
+
+.btn.btn-default.action-button.shiny-bound-input:focus{
+	outline: none;
+    border-color: #AFBD25;
+    box-shadow: 0 0 5px #CFDD50;
+}
+
+/*general background*/
+body {
+  background-color: white;
+}
