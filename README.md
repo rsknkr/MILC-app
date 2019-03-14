@@ -9,4 +9,4 @@ On March, 13, 2019:
     (estimated time of death from lung cancer, estimated time of diagnosis, 
     estimated hazard of the onset of the first malignant cell by certain age) 
     
- 2) and 3) are supposed to be the outputs in the shiny app
+ (2) and (3) are supposed to be the outputs in the shiny app
