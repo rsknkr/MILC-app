@@ -8,7 +8,7 @@
 
 
 # make sure user has all needed packages
-names<-c("MILC", "shinythemes","shiny")
+names<-c("MILC", "shinythemes","shiny", "survival")
 
 for(name in names){
   #if package not installed, install the package
@@ -22,6 +22,7 @@ for(name in names){
 library(shiny)
 library(shinythemes)
 library(MILC)
+library(survival)
 
 
 ui <- shinyUI(navbarPage(
@@ -188,11 +189,41 @@ server <- function(input, output) {
       }
     })
     
+    #----------
+    # SURVIVAL
+    #----------
+    
+    
+    # nat_hist(dat, pred_yrs, gender, status, ts, tq, m, cdiagn, creg, cdist)
+    data <- MILC::nat_hist(dat = c(runif(5),input$age,input$conditionalInput.cig.day), 
+                   pred_yrs = 20, 
+                   gender = input$gender, 
+                   status = input$smok_status, 
+                   ts = input$conditionalInput.age.start, 
+                   tq = input$conditionalInput.age.quit,
+                   m = 0.00042, 
+                   cdiagn = c(3.91, 3.91), 
+                   creg = c(1.1, 1.1), 
+                   cdist = c(2.8, 2.8))
+    
+    # follow-up time
+    time1 <- unlist(data["T_pred"]) - unlist(data["T_entry"]) 
+    
+    
+    # T_pred: age(years) at the end of the prediction period
+    # T_dl: predicted age(years) at death from lung cancer
+    
+    status_indicator <- unlist(data["T_dl"]) < unlist(data["T_pred"]) 
+    # TRUE if death from lung cancer happened before the end of prediction period
+    
+    surv_object <- Surv(time = time1, event = status_indicator)
+    
     #-------
     # PLOTS
     #-------
-    # output$survival_graph <- renderPlot({
-    # })
+    
+    
+   # output$survival_graph <- renderPlot({})
    
      
   })
