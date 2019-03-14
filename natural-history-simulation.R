@@ -1,3 +1,6 @@
+library(MILC)
+library(survival)
+
 # vector of follow-up times
 futime <- c()
 # vector of follow-up statuses
@@ -36,11 +39,11 @@ ffit <- survfit(surv_object~1, data=history_simulation_data, conf.type = "log-lo
 ffit
 summary(ffit)
 
-plot(ffit, xlim = c(50, 120), ylim=c(0.2,1), col = "#2E9FDF", lwd=2)     
-# survminer::ggsurvplot(ffit, palette = "#2E9FDF", 
-#                       risk.table.x.text=FALSE,
-#                       xlim = c(50, 120), break.time.by = 10,
-#                       ylim=c(0.2,1),
-#                       conf.int.style = "step",
-#                       legend="none")
+#plot(ffit, xlim = c(50, 120), ylim=c(0.2,1), col = "#2E9FDF", lwd=2)     
+
+survminer::ggsurvplot(ffit, palette = "#2E9FDF",
+                      risk.table.x.text=FALSE,
+                      xlim = c(50, 120), break.time.by = 10,
+                      ylim=c(0.2,1),
+                      legend="none")
 
